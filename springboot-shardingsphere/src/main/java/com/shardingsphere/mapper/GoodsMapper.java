@@ -24,12 +24,12 @@ public interface GoodsMapper {
 	 * 删除商品
 	 * @param id
 	 */
-	public void delete(String id);
+	public void delete(Long id);
 	
 	/**
 	 * 查询商品
 	 * @param ids
 	 * @return
 	 */
-	public List<Goods> selectGoodsList(@Param(value = "ids") List<String> ids);
+	public List<Goods> selectGoodsList(@Param(value = "ids") List<Long> ids);
 }

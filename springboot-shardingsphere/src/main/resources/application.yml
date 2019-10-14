@@ -12,13 +12,13 @@ spring:
       names: shardings01,shardings02
       shardings01: 
         type: com.alibaba.druid.pool.DruidDataSource
-        driver-class-name: com.mysql.jdbc.Driver
+        driver-class-name: com.mysql.cj.jdbc.Driver
         url: jdbc:mysql://localhost:3306/shardings01
         username: root
         password: root
       shardings02: 
         type: com.alibaba.druid.pool.DruidDataSource
-        driver-class-name: com.mysql.jdbc.Driver
+        driver-class-name: com.mysql.cj.jdbc.Driver
         url: jdbc:mysql://localhost:3306/shardings02
         username: root
         password: root
@@ -42,8 +42,12 @@ spring:
               sharding-column: goods_id
             # 分片算法行表达式
               algorithm-expression: t_goods$->{goods_id % 2}
-          key-generator: 
+          key-generator:
+          # 自增列名称 
             column: goods_id
             type: SNOWFLAKE
+            props:
+              worker.id: 5
+              max.tolerate.time.difference.milliseconds: 1000
         
     

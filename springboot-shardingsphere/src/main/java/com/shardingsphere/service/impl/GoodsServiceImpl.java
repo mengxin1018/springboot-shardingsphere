@@ -7,6 +7,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.shardingsphere.domin.Goods;
 import com.shardingsphere.mapper.GoodsMapper;
 import com.shardingsphere.service.GoodsService;
@@ -18,7 +20,7 @@ public class GoodsServiceImpl implements GoodsService {
 	private GoodsMapper goodsMapper;
 	
 	@Override
-	public void addUser(Map<String, Object> param) {
+	public void addGoods(Map<String, Object> param) {
 		String name = InputMapValidateUtil.getString(param, "name");
 		String price = InputMapValidateUtil.getString(param, "price");
 		Integer status = InputMapValidateUtil.getIntValue(param, "status", 0);
@@ -35,21 +37,26 @@ public class GoodsServiceImpl implements GoodsService {
 	}
 
 	@Override
-	public void deleteUser(Map<String, Object> param) {
-		// TODO Auto-generated method stub
+	public void deleteGoods(Map<String, Object> param) {
 
-	}
-
-	@Override
-	public void updateUser(Map<String, Object> param) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public List<Goods> selectUsers(Map<String, Object> param) {
+		Long id = InputMapValidateUtil.getLongValue(param, "id", 1);
 		
-		List<String> ids = (List<String>) param.get("ids");
+		goodsMapper.delete(id);
+	}
+
+	@Override
+	public void updateGoods(Map<String, Object> param) {
+		JSONObject jsonObject = JSONObject.parseObject(JSON.toJSONString(param));
+		
+		Goods goods = jsonObject.toJavaObject(Goods.class);
+		
+		goodsMapper.updateGoods(goods);
+	}
+
+	@Override
+	public List<Goods> selectGoods(Map<String, Object> param) {
+		
+		List<Long> ids = (List<Long>) param.get("ids");
 		List<Goods> goodsList = goodsMapper.selectGoodsList(ids);
 		return goodsList;
 	}

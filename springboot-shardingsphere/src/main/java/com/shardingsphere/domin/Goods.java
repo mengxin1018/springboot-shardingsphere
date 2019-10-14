@@ -10,7 +10,7 @@ import lombok.Data;
 @Component
 public class Goods {
 
-	private String goodsId;
+	private Long goodsId;
 	
 	private Integer goodsType;
 	

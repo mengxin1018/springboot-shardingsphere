@@ -58,13 +58,13 @@
 		delete from t_goods where goods_id = #{goods_id}
 	</delete>
 
-	<select id="selectGoodsList" resultMap="GoodsResult">
+	<select id="selectGoodsList" parameterType="java.util.List" resultMap="GoodsResult">
 		select
 		<include refid="goodscloum"></include>
 		where goods_id in
-		<foreach collection="#{ids}" separator="," item="id" close=")"
+		<foreach collection="ids" separator="," item="id" close=")"
 			open="(">
-			id
+			#{id}
 		</foreach>
 	</select>
 
