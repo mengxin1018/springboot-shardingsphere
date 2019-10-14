@@ -20,20 +20,16 @@ public class GoodsServiceImplTest extends BaseUnitTest {
 	public void addUserTest() {
 		try {
 			for (int i = 0; i < 50; i++) {
-
 				Map<String, Object> goodsMap = new HashMap<>();
 				goodsMap.put("name", "商品1");
 				goodsMap.put("type", 1);
-				
 				goodsMap.put("status", i);
 				goodsMap.put("price", "10");
-
 				goodsService.addGoods(goodsMap);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 	
 	
@@ -50,7 +46,6 @@ public class GoodsServiceImplTest extends BaseUnitTest {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 	@Test
@@ -65,7 +60,6 @@ public class GoodsServiceImplTest extends BaseUnitTest {
 		Map<String, Object> goodsMap = new HashMap<>();
 		goodsMap.put("goods_id", "390462534517280769");
 		goodsMap.put("price", "100");
-
 		goodsService.updateGoods(goodsMap);
 	}
 }
