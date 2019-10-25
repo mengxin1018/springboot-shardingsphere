@@ -12,10 +12,15 @@ spring:
     datasource: 
       names: shardings01,shardings02
       shardings01: 
+        #数据库连接池类名称
         type: com.alibaba.druid.pool.DruidDataSource
+        #数据库驱动类名
         driver-class-name: com.mysql.cj.jdbc.Driver
+        #数据库url连接
         url: jdbc:mysql://localhost:3306/shardings01
+        #数据库用户名
         username: root
+        #数据库密码
         password: root
       shardings02: 
         type: com.alibaba.druid.pool.DruidDataSource
@@ -33,7 +38,8 @@ spring:
           # 分片算法行表达式
           algorithm-expression: shardings0$->{(status % 2)+1}
       binding-tables: t_goods
-      tables: 
+      tables:
+        # 表分片设置 
         t_goods: 
           actual-data-nodes: shardings0$->{1..2}.t_goods$->{0..1}
           table-strategy:
@@ -46,7 +52,9 @@ spring:
           key-generator:
             # 自增列名称 
             column: goods_id
+            # 默认自增列值生成器类型
             type: SNOWFLAKE
-            props:
+            # 自增列值生成器属性配置
+            props: 
               worker.id: 5
               max.tolerate.time.difference.milliseconds: 1000

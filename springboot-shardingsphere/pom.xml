@@ -63,11 +63,11 @@
 			<scope>test</scope>
 		</dependency>
 		
-		<dependency>
+		<!-- <dependency>
       		<groupId>org.apache.shardingsphere</groupId>
       		<artifactId>sharding-jdbc-core</artifactId>
       		<version>${ShardingSphere.version}</version>
-		</dependency>
+		</dependency> -->
 		<!-- for spring boot -->
 		<dependency>
        		<groupId>org.apache.shardingsphere</groupId>
@@ -75,11 +75,11 @@
        		<version>${ShardingSphere.version}</version>
  		</dependency>
  		<!-- for spring namespace -->
- 		<dependency>
+ 		<!-- <dependency>
        		<groupId>org.apache.shardingsphere</groupId>
        		<artifactId>sharding-jdbc-spring-namespace</artifactId>
        		<version>${ShardingSphere.version}</version>
-  		</dependency>
+  		</dependency> -->
 	</dependencies>
 
 	<build>

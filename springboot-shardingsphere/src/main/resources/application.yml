@@ -63,12 +63,16 @@ spring:
         t_goods: 
           actual-data-nodes: shardings0$->{1..2}.t_goods$->{0..1}
           table-strategy:
+            #复合分片策略
+            complex:
+              sharding-columns: goods_id
+              algorithm-class-name: com.shardingsphere.config.ComplexKeyShardingImpl
             # 行表达式分片策略 
-            inline: 
-              # 分片列名称
-              sharding-column: goods_id
-              # 分片算法行表达式
-              algorithm-expression: t_goods$->{goods_id % 2}
+#            inline:
+#              # 分片列名称
+#              sharding-column: goods_id
+#              # 分片算法行表达式
+#              algorithm-expression: t_goods$->{goods_id % 2}
           key-generator:
             # 自增列名称 
             column: goods_id
@@ -90,5 +94,15 @@ spring:
           master-data-source-name: shardings02
           load-balance-algorithm-type: ROUND_ROBIN
           slave-data-source-names: shardings02s1,shardings02s2
-        
-    
+#      #数据脱敏
+#      encrypt-rule: 
+#        encryptors:
+#          tables.t_goods.columns.goods_name: 
+##          props:
+##            aes.key.value: 
+#            #加解密器类型
+#            type: MD5
+#            #辅助查询字段
+#            #assisted-query-columns: 
+#            #存储密文的字段
+#            qualified-columns: goods_qualified

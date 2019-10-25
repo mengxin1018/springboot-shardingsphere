@@ -21,9 +21,9 @@ public class GoodsServiceImplTest extends BaseUnitTest {
 	@Test
 	public void addUserTest() {
 		try {
-			for (int i = 0; i < 50; i++) {
+			for (int i = 0; i < 20; i++) {
 				Map<String, Object> goodsMap = new HashMap<>();
-				goodsMap.put("name", "商品1");
+				goodsMap.put("name", "aaa58565");
 				goodsMap.put("type", 1);
 				goodsMap.put("status", Math.random()*10+1);
 				goodsMap.put("price", "10");
